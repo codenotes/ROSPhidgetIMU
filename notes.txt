@@ -1,0 +1,30 @@
+Few steps:
+
+
+You need:
+
+http://www.phidgets.com/docs/OS_-_Linux
+
+
+On linux machine: clone:
+
+https://github.com/ccny-ros-pkg
+
+https://github.com/ccny-ros-pkg/imu_tools.git
+
+remove rviz plugin and rosmake will build this happily.  Use the hydro dist if ever asked. 
+
+You can use (but may not need):
+https://github.com/ccny-ros-pkg/phidgets_drivers.git (these are the drivers, you can build them youself with rosmake per instructions, but you can probably also just use the phidgets supplied ones. Not sure.)
+
+rosmake will work on the imu_tools IF you remove the rviz package which lacks dependencies to build. Don't need it anyway.
+
+roslaunch doesn't seem to work.  But this project will compile everything. It merges all the nodelets into one application, so you can simply run the app 
+
+be sure to copy the rules:
+sudo cp /home/gbrill/Downloads/libphidget-2.1.8.20140319/udev/99-phidgets.rules /etc/udev/rules.d/
+
+If appropriately installed on linux, this project should be able to push itself on and compile successfully without changes.  If you find you need to add header paths, etc., it is likely because you installed the phidgetAPI
+only in catkin and didn't do the ".configure" and make install process outlines in the phidgets docs.  I think both projects are compiling the same thing.  Haven't tried it but I suspect you don't need the phidgets_drivers.git.
+
+
